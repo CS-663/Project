@@ -1,5 +1,5 @@
-% A_base: bilateral output of non-flash image
-% A_nr: joint bilateral output of non-flash image
+% A_base: bilateral output of ambient image
+% A_nr: joint bilateral output of ambient image
 % F_detail: detail of Flash image
 % Mask: Mask of Flash shadow + specularities
 
