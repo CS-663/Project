@@ -7,6 +7,7 @@
 % joint_bilateral_filter(input, flash_input, 25, 0.001, 101);
 
 %% Import images
+
 ambient_input = im2double(imread('../../data/Detail_Transfer/carpet_01_noflash.tif'));
 flash_input = im2double(imread('../../data/Detail_Transfer/carpet_00_flash.tif'));
 imshow(ambient_input);
