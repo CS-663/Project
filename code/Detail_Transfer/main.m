@@ -11,22 +11,22 @@
 % PARAMETERS, THATS IT ONE HAS TO DO AND NOTHING ELSE
 %% Import images
 % For carpet 
-% ambient_input = im2double(imread('../../data/Detail_Transfer/carpet_01_noflash.tif'));
-% flash_input = im2double(imread('../../data/Detail_Transfer/carpet_00_flash.tif'));
-% imshow(ambient_input);
-% title('Input Ambient Image');
-% figure;
-% imshow(flash_input);
-% title('Input Flash Image');
-
-% For pot
-A = im2double(imread('../../data/Compressed_Detail_Transfer/lamp_01_noflash.png'));
-F = im2double(imread('../../data/Compressed_Detail_Transfer/lamp_00_flash.png'));
-imshow(A);
+ambient_input = im2double(imread('../../data/Detail_Transfer/carpet_01_noflash.tif'));
+flash_input = im2double(imread('../../data/Detail_Transfer/carpet_00_flash.tif'));
+imshow(ambient_input);
 title('Input Ambient Image');
 figure;
-imshow(F);
+imshow(flash_input);
 title('Input Flash Image');
+
+% For pot
+% A = im2double(imread('../../data/Compressed_Detail_Transfer/lamp_01_noflash.png'));
+% F = im2double(imread('../../data/Compressed_Detail_Transfer/lamp_00_flash.png'));
+% imshow(A);
+% title('Input Ambient Image');
+% figure;
+% imshow(F);
+% title('Input Flash Image');
 
 %% Denoising using bilateral and joint bilateral filter
 % For carpet
@@ -35,21 +35,21 @@ title('Input Flash Image');
 % imshow(A_base);
 % title('Bilateral Filter');
 % imwrite(A_base,'../../output_images/carpet_noflash_bilateral.tif');
-% A_nr = joint_bilateral_filter(ambient_input, flash_input, 25, 0.001, 101);
-% figure;
-% imshow(A_nr);
-% title('Joint Bilateral Filter');
-% imwrite(A_base,'../../output_images/carpet_noflash_joint_bilateral.tif');
-
-% For pot
-A_base = bilateral_filter(A, 8, 0.07, 33);
-figure;
-imshow(A_base);
-title('Bilateral Filter');
-A_nr = joint_bilateral_filter(A, F, 8, 0.001, 33);
+A_nr = joint_bilateral_filter(ambient_input, flash_input, 25, 0.001, 101);
 figure;
 imshow(A_nr);
 title('Joint Bilateral Filter');
+imwrite(A_nr,'../../output_images/carpet_noflash_joint_bilateral.tif');
+
+% For pot
+% A_base = bilateral_filter(A, 8, 0.07, 33);
+% figure;
+% imshow(A_base);
+% title('Bilateral Filter');
+% A_nr = joint_bilateral_filter(A, F, 8, 0.001, 33);
+% figure;
+% imshow(A_nr);
+% title('Joint Bilateral Filter');
 
 %% Finding difference between Joint and Base bilateral filtering
 % For carpet
@@ -62,7 +62,7 @@ title('Joint Bilateral Filter');
 % imwrite(difference, '../../output_images/carpet_difference.tif');
 
 %% Detail transfer
-% F_detail = flash_detail(F, 8, 0.07, 33);
+F_detail = flash_detail(F, 8, 0.07, 33);
 % For carpet
 % figure;
 % imshow(F_detail);
