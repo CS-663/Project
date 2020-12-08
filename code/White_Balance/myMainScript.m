@@ -9,6 +9,7 @@ ambient = im2double(imread('../../data/White_Balance/potsWB_01_noflash.jpg'));
 % imshow(flash);
 figure;
 imshow(ambient);
+title('Original No-Flash Image');
 impixelinfo;
 
 flash_lin = my_linearization(flash);
@@ -22,6 +23,7 @@ C_p(:,:,1) = imdivide(ambient(:,:,1), delta);
 C_p(:,:,2) = imdivide(ambient(:,:,2), delta);
 C_p(:,:,3) = imdivide(ambient(:,:,3), delta);
 
+
 % ambient_sum = ambient(:,:,1) + ambient(:,:,2) + ambient(:,:,3);
 t1_r = 0.02*range(ambient(:,:,1), 'all');
 t1_g = 0.02*range(ambient(:,:,2), 'all');
@@ -32,7 +34,6 @@ t2 = 0.02*range(delta, 'all');
 
 figure;
 imshow(C_p);
-title('Original No-Flash Image');
 impixelinfo;
 
 for i = 1:w
@@ -44,6 +45,10 @@ for i = 1:w
     end
 end
 
+% C_p = contrast_streching(C_p);
+
+disp(max(C_p,[],'all'));
+disp(min(C_p,[],'all'));
 
 c_r = mean(C_p(:,:,1), 'all');
 c_g = mean(C_p(:,:,2), 'all');
@@ -55,13 +60,11 @@ ambient_wb(:,:,1) = (imdivide(ambient(:,:,1), c_r));
 ambient_wb(:,:,2) = (imdivide(ambient(:,:,2), c_g));
 ambient_wb(:,:,3) = (imdivide(ambient(:,:,3), c_b));
 
-patch = ones(50);
+patch = ones(80);
 figure;
 imshow(cat(3,patch*c_r,patch*c_g,patch*c_b));
 title('Estimated ambient illumination');
 
-disp(max(ambient_wb,[],'all'));
-disp(min(ambient_wb,[],'all'));
 
 figure;
 imshow(ambient_wb);
