@@ -11,7 +11,7 @@ flash_convert = rgb2ycbcr(flash);
 % Value to be manipulated for interpolating between
 % Ambiet and Flash images
 
-alpha = 0.5;
+alpha = 0.0;
 if (alpha >= 0.0) && (alpha <= 1.0)
     Y_alpha = (1-alpha)*ambient_convert(:,:,1) + (alpha)*flash_convert(:,:,1);
     Cb_alpha = (1-alpha)*ambient_convert(:,:,2) + (alpha)*flash_convert(:,:,2);
