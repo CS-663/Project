@@ -20,7 +20,7 @@ f_cr = flash_convert(:,:,3);
 % figure;
 % imshow(f_cr);
 
-A = (f_cr - a_cr);
+A = contrast_streching(f_cr - a_cr);
 
 % https://in.mathworks.com/matlabcentral/answers/86410-changing-values-of-pixels-in-an-image-pixel-by-pixel-thresholding
 R = A;
@@ -41,5 +41,18 @@ final_bin = find_seed(R);
 
 figure;
 imshow(final_bin);
+impixelinfo;
+
+%  https://in.mathworks.com/help/images/morphological-dilation-and-erosion.html
+%  https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html
+se = strel('disk',15);
+final_bin = imclose(final_bin, se);
+
+figure;
+imshow(final_bin);
+impixelinfo;
+
+figure;
+[C, h] = imcontour(final_bin);
 
 toc;

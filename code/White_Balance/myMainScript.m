@@ -32,6 +32,10 @@ t2 = 0.02*range(delta, 'all');
 
 disp(mean(C_p, 'all'));
 
+figure;
+imshow(C_p);
+impixelinfo;
+
 for i = 1:w
     for j = 1:h
     if ambient(j,i,1)<t1_r && ambient(j,i,2)<t1_g && ambient(j,i,3)<t1_b ...
@@ -45,7 +49,7 @@ disp(mean(C_p, 'all'));
 
 c = mean(C_p, 'all');
 
-ambient_wb = contrast_streching(imdivide(ambient, c));
+ambient_wb = (imdivide(ambient, c));
 
 % disp(max(ambient_wb,[],'all'));
 % disp(min(ambient_wb,[],'all'));
